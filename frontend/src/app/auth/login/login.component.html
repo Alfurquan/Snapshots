@@ -1,0 +1,42 @@
+<div class="container" id="content">
+  <h1 class="display-4" style="text-align:center; color:black;">
+    Sign In
+  </h1>
+  <p class="text-center">Login to your SnapShots Account</p>
+  <div class="row">
+    <div style="width:30%;margin:20px auto">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="email"
+            [(ngModel)]="userModel.email"
+            name="email"
+            required="required"
+            placeholder="Email"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="password"
+            [(ngModel)]="userModel.password"
+            name="password"
+            required="required"
+            placeholder="Password"
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-large btn-primary btn-block"
+          [disabled]="!f.valid"
+        >
+          Login
+        </button>
+        <p id="gotoregister">
+          Don't have an account <a routerLink="/register">Sign Up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

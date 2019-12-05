@@ -1,0 +1,19 @@
+{
+  "name": "snapshots",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "backend": "cd backend && nodemon index.js",
+    "frontend": "cd frontend && ng serve",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.0.0",
+    "nodemon": "^2.0.1"
+  }
+}

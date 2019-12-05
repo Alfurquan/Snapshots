@@ -1,0 +1,112 @@
+<div class="container" id="content">
+  <h1 class="display-4" style="text-align:center;margin-top:5%; color:black;">
+    Edit Profile
+  </h1>
+  <p class="text-center">Edit your SnapShots Profile</p>
+  <div class="row">
+    <div style="width:30%;margin:20px auto">
+      <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="user.firstname"
+            #firstName="ngModel"
+            name="firstname"
+            required="required"
+            minlength="5"
+            placeholder="First Name"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="firstName.touched && !firstName.valid"
+          >
+            <div *ngIf="firstName.errors.required">Firstname is required</div>
+            <div *ngIf="firstName.errors.minlength">
+              Firstname must be atleast 5 characters long
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="user.lastname"
+            #lastName="ngModel"
+            name="lastname"
+            required="required"
+            minlength="5"
+            placeholder="Last Name"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="lastName.touched && !lastName.valid"
+          >
+            <div *ngIf="lastName.errors.required">Lastname is required</div>
+            <div *ngIf="lastName.errors.minlength">
+              Lastname must be atleast 5 characters long
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="user.username"
+            name="username"
+            #userName="ngModel"
+            required="required"
+            minlength="3"
+            placeholder="Username"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="userName.touched && !userName.valid"
+          >
+            <div *ngIf="userName.errors.required">Username is required</div>
+            <div *ngIf="userName.errors.minlength">
+              username must be atleast 3 characters long
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            class="form-control"
+            type="text"
+            [(ngModel)]="user.email"
+            name="email"
+            #email="ngModel"
+            required="required"
+            placeholder="Email"
+            email
+          />
+          <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+            <div *ngIf="email.errors.required">email is required</div>
+            <div *ngIf="email.errors.email">Enter a valid email</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="profileImage">Profile Picture</label>
+          <input
+            #profileImage
+            id="profileImage"
+            type="file"
+            name="coverImage"
+            required="required"
+            (change)="onfileChanged($event)"
+            placeholder="Profile Image"
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-large btn-primary btn-block"
+          [disabled]="!f.valid"
+        >
+          Save Changes
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

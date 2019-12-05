@@ -1,0 +1,50 @@
+<div *ngIf="loading" class="spinner"></div>
+<div class="container" id="content" *ngIf="!loading">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div id="left-content" class="col-lg-8">
+      <div class="thumbnail">
+        <img [src]="url + photo.photoImage" class="img-thumbnail rounded" />
+        <div class="caption">
+          <div id="likes" class="row pull-right">
+            <h6 id="likesCount" [textContent]="photo.likes.length"></h6>
+            <h6 id="likesText" style="margin-left:5px;">likes</h6>
+          </div>
+
+          <h4>{{ photo.description }}</h4>
+
+          <a
+            id="like"
+            (click)="likePhoto(photo._id)"
+            class="btn btn-primary pull-right"
+            ><i class="fa fa-thumbs-up" style="margin-right:5px;"></i>Like
+            Photo</a
+          >
+          <p>
+            <em>Submitted on</em>
+            <em style="margin-left:5px;">{{
+              photo.date | date: "fullDate"
+            }}</em>
+          </p>
+          <a
+            id="delete"
+            [hidden]="!checkIfOwner(photo)"
+            class="btn btn-warning"
+            style="margin-right:5px;"
+            [routerLink]="['/edit/photo', photo._id]"
+            ><i class="fa fa-pencil" style="margin-right:5px;"></i>Edit Photo</a
+          >
+          <a
+            id="delete"
+            [hidden]="!checkIfOwner(photo)"
+            class="btn btn-danger"
+            (click)="deletePhoto(photo._id); $event.stopPropagation()"
+            ><i class="fa fa-trash" style="margin-right:5px;"></i>Delete
+            Photo</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
+</div>

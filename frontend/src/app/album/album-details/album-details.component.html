@@ -1,0 +1,89 @@
+<div *ngIf="loading" class="spinner"></div>
+<div class="container" *ngIf="!loading">
+  <div class="row" id="content">
+    <div id="left-content" class="col-sm">
+      <div class="thumbnail">
+        <img [src]="url + album.coverImage" class="img-thumbnail rounded" />
+        <div class="caption">
+          <div class="pull-right">
+            <div id="likes" class="row">
+              <h6 id="likesCount" [textContent]="album.likes.length"></h6>
+              <h6 id="likesText">likes</h6>
+            </div>
+          </div>
+          <h4 id="album-heading">
+            <a>{{ album.title }}</a>
+          </h4>
+
+          <a
+            id="like"
+            (click)="likeAlbum(album._id); $event.stopPropagation()"
+            class="btn btn-primary pull-right"
+            style="color: white;"
+            ><i class="fa fa-thumbs-up" style="margin-right:5px;"></i>Like
+            Album</a
+          >
+
+          <p id="album-desc">{{ album.description }}</p>
+          <p id="album-date">
+            <em>Submitted by</em>
+            <em style="margin-left:5px;">{{ username }}</em
+            ><em style="margin-left:5px;">on</em
+            ><em style="margin-left:5px;">{{
+              album.date | date: "fullDate"
+            }}</em>
+          </p>
+          <a
+            id="edit"
+            [hidden]="!checkIfOwner(album)"
+            class="btn btn-warning "
+            style="margin-right:5px;margin-bottom:15px;color: white;"
+            [routerLink]="['/edit/album', album._id]"
+            ><i class="fa fa-pencil" style="margin-right:5px;"></i>Edit</a
+          >
+          <button
+            type="button"
+            id="delete"
+            [hidden]="!checkIfOwner(album)"
+            class="btn btn-danger"
+            style="margin-bottom:15px;color: white;"
+            (click)="openConfirmationDialog()"
+          >
+            <i class="fa fa-trash" style="margin-right:5px;"></i>Delete
+          </button>
+          <a
+            id="upload"
+            [hidden]="!checkIfOwner(album)"
+            [routerLink]="['/new/photo', album._id]"
+            style="margin-bottom:15px;"
+            class="btn btn-info pull-right"
+            ><i class="fa fa-upload" style="margin-right:5px;"></i>Upload
+            Photos</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+      <div class="card card-body bg-light mb-3">
+        <h2 class="display-4 text-center text-info">{{ album.title }}</h2>
+        <h5 class="display-5 text-center">The snaps in the album</h5>
+
+        <div class="row">
+          <div
+            id="photos"
+            class="col-lg-3 col-md-4 col-6"
+            *ngFor="let photo of photos"
+          >
+            <a [routerLink]="['/album/photo', photo._id]" class="d-block">
+              <img
+                id="image"
+                class="img-fluid img-thumbnail"
+                [src]="url + photo.photoImage"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

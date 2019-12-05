@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md  fixed-top">
+  <a class="navbar-brand" style="color:grey;" routerLink="/">SnapShots</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto my-items">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/albums">Albums</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li
+        class="my-items"
+        *ngIf="service.isLoggedIn()"
+        ngbDropdown
+        class="nav-item dropdown"
+      >
+        <a
+          ngbDropdownToggle
+          class="nav-link dropdown-toggle"
+          id="dropdown01"
+          style="color:grey"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Hello {{ username }}</a
+        >
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" routerLink="/profile">My Profile</a>
+          <a (click)="logout()" class="dropdown-item">Log Out</a>
+        </div>
+      </li>
+      <li class="my-items" *ngIf="!service.isLoggedIn()">
+        <a class="nav-link" routerLink="/login" style="padding:10px;">Login</a>
+      </li>
+      <li class="my-items" *ngIf="!service.isLoggedIn()">
+        <a class="nav-link" routerLink="/register" style="padding:10px;"
+          >Sign Up</a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>
