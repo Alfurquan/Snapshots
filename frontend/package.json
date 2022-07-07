@@ -33,7 +33,7 @@
     "http": "0.0.0",
     "jquery": "^3.3.1",
     "jwt-decode": "^2.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "ng2-animate-on-scroll": "^1.0.11",
     "ng2-img-max": "^2.1.18",
     "ng6-toastr-notifications": "^1.0.4",
